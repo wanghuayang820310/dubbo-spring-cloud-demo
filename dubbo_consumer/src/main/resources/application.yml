@@ -1,0 +1,39 @@
+server:
+  port: 8080
+dubbo:
+  consumer:
+    timeout: 15000
+    check: false
+    retries: 0
+    filter: 'tracing'
+  provider:
+    retries: 0
+    filter: 'tracing'
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: spring-cloud://192.168.10.20
+  cloud:
+    subscribed-services: dubbo-provider,dubbo-product
+spring:
+  application:
+    name: dubbo-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.10.20:8848
+  #  sleuth zipkin链路追踪
+  zipkin:
+    base-url: http://192.168.10.20:9411
+    discovery-client-enabled: false
+    enabled: true
+    messageTimeout: 5
+    sender:
+      #向http发送trace信息
+      type: web
+  sleuth:
+    sampler:
+      probability:  1 #采样范围，0-1之间，1全部采样 一般0.5就够
+  main:
+    allow-bean-definition-overriding: true

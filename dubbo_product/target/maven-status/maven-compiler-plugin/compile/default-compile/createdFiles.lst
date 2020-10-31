@@ -1,0 +1,3 @@
+com\springcloud\dubbo_provider\action\ProductAction.class
+com\springcloud\dubbo_provider\ProductApplication.class
+com\springcloud\dubbo_provider\service\Productservice.class
